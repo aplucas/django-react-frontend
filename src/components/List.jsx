@@ -1,4 +1,5 @@
 import React from "react";
+import Item from "./Item";
 
 // import { Container } from './styles';
 
@@ -7,8 +8,9 @@ function List() {
     <div>
       <h1>Minha lista</h1>
       <ul>
-        <li>Item 1</li>
-        <li>Item 2</li>
+        <Item name="Item 1" />
+        <Item name="Item 2" />
+        <Item name="Item 3" />
       </ul>
     </div>
   );
