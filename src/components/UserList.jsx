@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from "react";
 import List from "./List";
-import Login from "./Login";
 
 // import { Container } from './styles';
 
@@ -32,14 +31,12 @@ function UserList() {
     loadLists();
   }, [token]);
 
-  return token ? (
+  return (
     <div>
       {lists.map((list) => (
         <List key={list.id} name={list.name} items={list.item_set} />
       ))}
     </div>
-  ) : (
-    <Login />
   );
 }
 

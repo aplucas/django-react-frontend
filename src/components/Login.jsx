@@ -1,10 +1,12 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
+import UserList from "./UserList";
 
 // import { Container } from './styles';
 
 function Login() {
   const [user, setUser] = useState("admin");
   const [pass, setPass] = useState("admin");
+  const [token, setToken] = useState(null);
 
   function handleSubmit(event) {
     const url = "http://127.0.0.1:8000/api-auth-token/";
@@ -15,13 +17,21 @@ function Login() {
     };
     fetch(url, requestOptions)
       .then((res) => res.json())
-      .then((data) => localStorage.setItem("token", data.token));
+      .then((data) => {
+        localStorage.setItem("token", data.token);
+        setToken(data.token);
+      });
 
     // alert(`Usuário: ${user}\nSenha: ${pass}`);
     event.preventDefault();
   }
 
-  return (
+  useEffect(() => {
+    const localToken = localStorage.getItem("token");
+    setToken(localToken);
+  }, []);
+
+  return !token ? (
     <form onSubmit={handleSubmit}>
       <label>
         Usuário:
@@ -41,6 +51,8 @@ function Login() {
       </label>
       <input type="submit" value="Enviar" />
     </form>
+  ) : (
+    <UserList />
   );
 }
 
