@@ -33,7 +33,7 @@ function UserList() {
   return (
     <div>
       {lists.map((list) => (
-        <List key={list.id} name={list.name} />
+        <List key={list.id} name={list.name} items={list.item_set} />
       ))}
     </div>
   );
