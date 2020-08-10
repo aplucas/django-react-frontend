@@ -7,15 +7,15 @@ import Login from "./Login";
 function UserList() {
   const [lists, setLists] = useState([]);
   const [loading, setLoading] = useState(false);
-  const [token, setToken] = useState("");
+
+  const token = localStorage.getItem("token");
 
   useEffect(() => {
     async function loadLists() {
       const config = {
         headers: { "Content-Type": "application/json" },
       };
-      config.headers["Authorization"] =
-        "Token 	efb8733fafe4e7e4268a5514136191764724dc3c";
+      config.headers["Authorization"] = "Token " + token;
 
       const url = "http://127.0.0.1:8000/lists/";
 
@@ -30,7 +30,7 @@ function UserList() {
     }
 
     loadLists();
-  }, []);
+  }, [token]);
 
   return token ? (
     <div>
