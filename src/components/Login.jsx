@@ -25,6 +25,10 @@ function Login() {
     // alert(`Usuário: ${user}\nSenha: ${pass}`);
     event.preventDefault();
   }
+  function logout() {
+    localStorage.removeItem("token")
+    setToken(null)
+  }
 
   useEffect(() => {
     const localToken = localStorage.getItem("token");
@@ -52,7 +56,10 @@ function Login() {
       <input type="submit" value="Enviar" />
     </form>
   ) : (
-    <UserList />
+    <div>
+      <UserList />
+      <button onClick={logout}>Logout</button>
+    </div>
   );
 }
 
