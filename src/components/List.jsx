@@ -3,10 +3,11 @@ import Item from "./Item";
 
 // import { Container } from './styles';
 
-function List() {
+function List(props) {
+  const { name } = props;
   return (
     <div>
-      <h1>Minha lista</h1>
+      <h1>{name}</h1>
       <ul>
         <Item name="Item 1" />
         <Item name="Item 2" />
