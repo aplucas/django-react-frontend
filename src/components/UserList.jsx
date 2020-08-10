@@ -32,8 +32,9 @@ function UserList() {
 
   return (
     <div>
-      <List name="Milha lista 1" />
-      <List name="Milha lista 2" />
+      {lists.map((list) => (
+        <List key={list.id} name={list.name} />
+      ))}
     </div>
   );
 }
