@@ -1,11 +1,13 @@
 import React, { useState, useEffect } from "react";
 import List from "./List";
+import Login from "./Login";
 
 // import { Container } from './styles';
 
 function UserList() {
   const [lists, setLists] = useState([]);
   const [loading, setLoading] = useState(false);
+  const [token, setToken] = useState("");
 
   useEffect(() => {
     async function loadLists() {
@@ -13,7 +15,7 @@ function UserList() {
         headers: { "Content-Type": "application/json" },
       };
       config.headers["Authorization"] =
-        "Token 9337161f6bdf93bbc19ed06d9b9500f0037ccb5d";
+        "Token 	efb8733fafe4e7e4268a5514136191764724dc3c";
 
       const url = "http://127.0.0.1:8000/lists/";
 
@@ -30,12 +32,14 @@ function UserList() {
     loadLists();
   }, []);
 
-  return (
+  return token ? (
     <div>
       {lists.map((list) => (
         <List key={list.id} name={list.name} items={list.item_set} />
       ))}
     </div>
+  ) : (
+    <Login />
   );
 }
 
